@@ -11,6 +11,7 @@ ctx.strokeStyle = "#000000";
 ctx.lineWidth = 2.5; /* 라인 굵기 */
 
 let painting = false;
+let filling = false;
 
 function stopPainting() {
     painting = false;
@@ -42,6 +43,15 @@ function handleRangeChange(event) {
     ctx.lineWidth = size;
   }
 
+function handleModeClick() {
+ if (filling === true) {
+   filling = false;
+   mode.innerText = "Fill";
+ } else {
+  filling = true;
+  mode.innerText = "Paint";
+ }
+}
 
 if (canvas) {
     canvas.addEventListener("mousemove", onMouseMove);
@@ -58,3 +68,7 @@ if (range) {
     range.addEventListener("input", handleRangeChange);
 }
   
+if (mode) {
+    mode.addEventListener("click", handleModeClick);
+}
+
